@@ -1,4 +1,6 @@
-document.getElementById("login-form").addEventListener("submit", function(event) {
+function authenticate(){
+    debugger;
+
     event.preventDefault(); // Prevent form submission
 
     const username = document.getElementById("username").value;
@@ -18,7 +20,11 @@ document.getElementById("login-form").addEventListener("submit", function(event)
         return;
     }
 
+    if(username=="admin"&&password=="admin"){
+        alert("Login Successful");
+    }
+
     // If validation passes, submit the form or handle login logic
     console.log("Validation successful!");
     // Add code for form submission or login logic here
-});
+};
