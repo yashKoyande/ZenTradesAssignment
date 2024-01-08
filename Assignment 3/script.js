@@ -1,8 +1,4 @@
 function authenticate(){
-    debugger;
-
-    event.preventDefault(); // Prevent form submission
-
     const username = document.getElementById("username").value;
     const password = document.getElementById("password").value;
 
@@ -24,7 +20,4 @@ function authenticate(){
         alert("Login Successful");
     }
 
-    // If validation passes, submit the form or handle login logic
-    console.log("Validation successful!");
-    // Add code for form submission or login logic here
 };
