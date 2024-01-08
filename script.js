@@ -1,23 +1,18 @@
-function authenticate(){
-    const username = document.getElementById("username").value;
-    const password = document.getElementById("password").value;
+// Fetch the JSON data from the API
+      fetch('https://s3.amazonaws.com/open-to-cors/assignment.json')
+       .then(response => response.json())
+       .then(data => {
+           // Convert the products object to an array
+           let productsArray = Object.values(data.products);
 
-    // Email validation
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(username)) {
-        alert("Invalid email format.");
-        return;
-    }
+           // Sort the data based on popularity
+           productsArray.sort((a, b) => b.popularity - a.popularity);
 
-    // Password validation
-    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@])[a-zA-Z0-9@]+$/;
-    if (!passwordRegex.test(password)) {
-        alert("Password must contain an uppercase letter, a number, and only @ as a special character.");
-        return;
-    }
-
-    if(username=="admin"&&password=="admin"){
-        alert("Login Successful");
-    }
-
-};
+           // Display the data
+           const productsContainer = document.getElementById('productsContainer');
+           for (let product of productsArray) {
+               let productElement = document.createElement('div');
+               productElement.innerHTML = `<h2>${product.title}</h2><p>Price: ${product.price}</p>`;
+               productsContainer.appendChild(productElement);
+           }
+       });
